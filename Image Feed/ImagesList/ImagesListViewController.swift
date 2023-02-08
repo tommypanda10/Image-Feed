@@ -1,6 +1,4 @@
-
 import UIKit
-
 
 class ImagesListViewController: UIViewController {
     @IBOutlet private var tableView: UITableView!
