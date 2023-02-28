@@ -9,10 +9,8 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        actions()
         setupConstraints()
     }
     
@@ -55,6 +53,7 @@ final class ProfileViewController: UIViewController {
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         logoutButton.setImage(UIImage(named: "logoutButton"), for: .normal)
         logoutButton.tintColor = .red
+        logoutButton.addTarget(ProfileViewController.self, action: #selector(logoutButtonTap), for: .touchUpInside)
         return logoutButton
     }()
     
@@ -62,13 +61,13 @@ final class ProfileViewController: UIViewController {
         view.addSubview(avatar)
         avatar.widthAnchor.constraint(equalToConstant: 70).isActive = true
         avatar.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        avatar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-        avatar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-
+        avatar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32).isActive = true
+        avatar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
+        
         view.addSubview(nameLabel)
         nameLabel.topAnchor.constraint(equalTo: avatar.bottomAnchor, constant: 8).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: avatar.leadingAnchor).isActive = true
-                
+        
         view.addSubview(loginLabel)
         loginLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8).isActive = true
         loginLabel.leadingAnchor.constraint(equalTo: avatar.leadingAnchor).isActive = true
@@ -78,16 +77,12 @@ final class ProfileViewController: UIViewController {
         descriptionLabel.leadingAnchor.constraint(equalTo: avatar.leadingAnchor).isActive = true
         
         view.addSubview(logoutButton)
-        logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
+        logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -26).isActive = true
         logoutButton.centerYAnchor.constraint(equalTo: avatar.centerYAnchor).isActive = true
     }
     
-    private func actions() {
-        logoutButton.addTarget(self, action: #selector(logoutButtonTap), for: .touchUpInside)
-    }
-    
-    @objc func logoutButtonTap() {
-        loginLabel.removeFromSuperview()
+    @objc private func logoutButtonTap() {
+        print("Tap")
     }
 }
 
