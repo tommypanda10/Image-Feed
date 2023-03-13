@@ -8,8 +8,8 @@
 import Foundation
 
 final class OAuth2TokenStorage {
-    private let bearerTokenKey = "imageFeedBearerToken"
-    var token: String? {
+    static private let bearerTokenKey = "imageFeedBearerToken"
+    static var token: String? {
         get {
             UserDefaults.standard.string(forKey: bearerTokenKey)
         }

@@ -11,6 +11,7 @@ final class SingleImageViewController: UIViewController {
     
     override var prefersStatusBarHidden: Bool { true }
     
+    
     var image: UIImage! {
         didSet {
             guard isViewLoaded else { return }
@@ -63,4 +64,7 @@ extension SingleImageViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         imageView
     }
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+            rescaleAndCenterImageInScrollView(image: image)
+        }
 }

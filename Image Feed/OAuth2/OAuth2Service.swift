@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OAuth2Service {
+final class OAuth2Service {
     
     private enum NetworkError: Error {
         case codeError
@@ -15,12 +15,12 @@ class OAuth2Service {
     }
     
     static func fetchAuthToken(code: String, handler: @escaping (Result<String, Error>) -> Void) {
-        let url = URL(string: "https://unsplash.com/oauth/token")!
-        var request = URLRequest(url: url)
+        
+        var request = URLRequest(url: Constants.url)
         let params: [String: Any] = [
-            "client_id": accessKey,
-            "client_secret": secretKey,
-            "redirect_uri": redirectURI,
+            "client_id": Constants.accessKey,
+            "client_secret": Constants.secretKey,
+            "redirect_uri": Constants.redirectURI,
             "code": code,
             "grant_type": "authorization_code"
         ]
@@ -32,7 +32,8 @@ class OAuth2Service {
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
         } catch let error {
-            print(error.localizedDescription)
+            assert(false)
+            assertionFailure(error.localizedDescription)
             return
         }
         
