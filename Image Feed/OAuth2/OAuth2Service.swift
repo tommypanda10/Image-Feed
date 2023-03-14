@@ -32,7 +32,6 @@ final class OAuth2Service {
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
         } catch let error {
-            assert(false)
             assertionFailure(error.localizedDescription)
             return
         }

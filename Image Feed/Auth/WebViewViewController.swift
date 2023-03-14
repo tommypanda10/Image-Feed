@@ -20,8 +20,6 @@ final class WebViewViewController: UIViewController {
     
     weak var delegate: WebViewViewControllerDelegate?
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,7 +92,7 @@ extension WebViewViewController: WKNavigationDelegate {
             let url = navigationAction.request.url,
             let urlComponents = URLComponents(string: url.absoluteString),
             urlComponents.path == "/oauth/authorize/native",
-                let items = urlComponents.queryItems,
+            let items = urlComponents.queryItems,
             let codeItem = items.first(where: { $0.name == "code" })
         {
             return codeItem.value
